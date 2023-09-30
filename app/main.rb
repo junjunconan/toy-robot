@@ -8,6 +8,10 @@ require 'application/commands/move_command'
 require 'application/commands/place_command'
 require 'application/commands/report_command'
 require 'application/commands/right_command'
+require 'domain/direction'
+require 'domain/position'
+require 'domain/robot'
+require 'domain/table'
 
 class Main
   def run
@@ -19,7 +23,9 @@ class Main
     puts '4. RIGHT'
     puts '5. REPORT'
 
-    manager = Application::CommandManager.new
+    robot = Domain::Robot.new
+    table = Domain::Table.new(width: 5, height: 5)
+    manager = Application::CommandManager.new(robot: robot, table: table)
 
     loop do
       begin

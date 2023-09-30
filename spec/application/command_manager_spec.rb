@@ -3,7 +3,10 @@
 require 'spec_helper'
 
 describe Application::CommandManager do
-  subject { Application::CommandManager.new }
+  let(:robot) { double('Robot') }
+  let(:table) { double('Table') }
+
+  subject { Application::CommandManager.new(robot: robot, table: table) }
 
   describe '#parse' do
     context 'PLACE command' do
@@ -24,7 +27,7 @@ describe Application::CommandManager do
 
     context 'LEFT command' do
       it do
-        expect(Application::Commands::LeftCommand).to receive(:new)
+        expect(Application::Commands::LeftCommand).to receive(:new).with(robot: robot)
 
         subject.parse('LEFT')
       end
@@ -32,7 +35,7 @@ describe Application::CommandManager do
 
     context 'RIGHT command' do
       it do
-        expect(Application::Commands::RightCommand).to receive(:new)
+        expect(Application::Commands::RightCommand).to receive(:new).with(robot: robot)
 
         subject.parse('RIGHT')
       end
@@ -40,7 +43,7 @@ describe Application::CommandManager do
 
     context 'REPORT command' do
       it do
-        expect(Application::Commands::ReportCommand).to receive(:new)
+        expect(Application::Commands::ReportCommand).to receive(:new).with(robot: robot)
 
         subject.parse('REPORT')
       end

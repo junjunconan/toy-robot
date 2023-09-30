@@ -3,8 +3,12 @@
 module Application
   module Commands
     class ReportCommand
+      def initialize(robot:)
+        @robot = robot
+      end
+
       def execute
-        raise NotImplementedError
+        puts "Output: #{@robot.report}"
       end
     end
   end
