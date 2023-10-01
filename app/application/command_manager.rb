@@ -12,7 +12,8 @@ module Application
 
       case command
       when /^PLACE$/i
-        Commands::PlaceCommand.new(robot: @robot, table: @table)
+        x, y, direction = argument.to_s.split(',')
+        Commands::PlaceCommand.new(robot: @robot, table: @table, x: x, y: y, direction: direction)
       when /^MOVE$/i
         Commands::MoveCommand.new(robot: @robot, table: @table)
       when /^LEFT$/i

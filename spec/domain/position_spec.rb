@@ -3,6 +3,15 @@
 require 'spec_helper'
 
 describe Domain::Position do
+  describe '#valid?' do
+    it { expect(Domain::Position.new(2, 3).valid?).to eq true }
+    it { expect(Domain::Position.new(2, nil).valid?).to eq false }
+    it { expect(Domain::Position.new(nil, 3).valid?).to eq false }
+    it { expect(Domain::Position.new('2', 3).valid?).to eq false }
+    it { expect(Domain::Position.new(2, '3').valid?).to eq false }
+    it { expect(Domain::Position.new(2.2, 3).valid?).to eq false }
+  end
+
   describe '#new_position_from' do
     let(:step) { 2 }
     let(:direction) { nil }

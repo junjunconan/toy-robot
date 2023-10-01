@@ -11,7 +11,7 @@ describe Application::CommandManager do
   describe '#parse' do
     context 'PLACE command' do
       it do
-        expect(Application::Commands::PlaceCommand).to receive(:new)
+        expect(Application::Commands::PlaceCommand).to receive(:new).with(robot: robot, table: table, x: '0', y: '0', direction: 'NORTH')
 
         subject.parse('PLACE 0,0,NORTH')
       end
@@ -19,7 +19,7 @@ describe Application::CommandManager do
 
     context 'MOVE command' do
       it do
-        expect(Application::Commands::MoveCommand).to receive(:new)
+        expect(Application::Commands::MoveCommand).to receive(:new).with(robot: robot, table: table)
 
         subject.parse('MOVE')
       end

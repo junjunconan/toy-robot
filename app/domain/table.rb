@@ -8,6 +8,8 @@ module Domain
     end
 
     def valid_position?(position)
+      return false unless position&.valid?
+
       position.x_coordinate >= 0 && position.y_coordinate >= 0 && position.x_coordinate < @width && position.y_coordinate < @height
     end
   end

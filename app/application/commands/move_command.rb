@@ -11,7 +11,10 @@ module Application
       def execute
         raise StandardError.new('Robot not placed yet') unless @robot.placed?
 
-        raise NotImplementedError
+        position = @robot.position.new_position_from(direction: @robot.direction)
+        raise StandardError.new("Invalid position: #{position.x_coordinate},#{position.y_coordinate}") unless @table.valid_position?(position)
+
+        @robot.move_to(new_position: position)
       end
     end
   end

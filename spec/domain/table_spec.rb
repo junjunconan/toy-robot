@@ -13,6 +13,9 @@ describe Domain::Table do
     end
 
     context 'invalid position' do
+      it { expect(subject.valid_position?(nil)).to eq false }
+      it { expect(subject.valid_position?(Domain::Position.new(nil, 3))).to eq false }
+      it { expect(subject.valid_position?(Domain::Position.new(2, nil))).to eq false }
       it { expect(subject.valid_position?(Domain::Position.new(-1, 3))).to eq false }
       it { expect(subject.valid_position?(Domain::Position.new(2, -1))).to eq false }
       it { expect(subject.valid_position?(Domain::Position.new(2, 5))).to eq false }

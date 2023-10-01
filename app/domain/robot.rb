@@ -2,6 +2,8 @@
 
 module Domain
   class Robot
+    attr_reader :position, :direction
+
     def initialize(position: nil, direction: nil)
       @position = position
       @direction = direction
@@ -16,7 +18,7 @@ module Domain
       !@position.nil? && !@direction.nil?
     end
 
-    def move(new_position:)
+    def move_to(new_position:)
       @position = new_position
     end
 
